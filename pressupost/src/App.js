@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import OrderPage from "./pages/OrderPage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <Fragment>
-      <h1>Hello World</h1>
+      <OrderPage/>
       <Footer currantYear={currantYear}/>
     </Fragment>
   );
