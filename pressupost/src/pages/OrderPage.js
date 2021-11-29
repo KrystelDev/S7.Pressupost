@@ -29,8 +29,8 @@ const OrderPage = () => {
     if (isSelected1) {
       // Here we deselect webSelected and supplemen
       setSupplemen(0);
-      setValueLangue(0);
-      setValuePage(0);
+      setValueLangue(1);
+      setValuePage(1);
       setSercivesSelected(sercivesSelected - Services[0].price);
       setChecked1(!checked1); //because is "asincrono"
     }
