@@ -9,16 +9,16 @@ const OrderPage = () => {
   let [checked1, setChecked1] = useState(false);
   let [checked2, setChecked2] = useState(false);
   let [checked3, setChecked3] = useState(false);
-  let [valuePage, setValuePage] = useState(0);
-  let [valueLangue, setValueLangue] = useState(0);
-  const [supplemen, setSupplemen] = useState(0);
+  const [sercivesSelected, setSercivesSelected] = useState(0); //Price service selected
+  let [valuePage, setValuePage] = useState(1); //Quantity page (min:1)
+  let [valueLangue, setValueLangue] = useState(1); //Quantity Langue (min:1)
+  const [supplement, setSupplemen] = useState(0); //Price supplemen
   let [budget, setBudget] = useState(0);
-  const [sercivesSelected, setSercivesSelected] = useState(0);
 
   useEffect(() => {
-    // Update the budget with your supplement
-    setBudget(sercivesSelected + supplemen);
-  }, [sercivesSelected, supplemen]);
+    // Update the budget with its supplement
+    setBudget(sercivesSelected + supplement);
+  }, [sercivesSelected, supplement]);
 
   /*Change State of each service and add checked budget:
    * Service Pàgina Web :
@@ -27,7 +27,7 @@ const OrderPage = () => {
     const isSelected1 = checked1 === true;
     const notSelected1 = checked1 === false;
     if (isSelected1) {
-      // Aquí deseleccionem el webSelected i els suplements
+      // Here we deselect webSelected and supplemen
       setSupplemen(0);
       setValueLangue(0);
       setValuePage(0);
@@ -36,10 +36,19 @@ const OrderPage = () => {
     }
     if (notSelected1) {
       setSercivesSelected(sercivesSelected + Services[0].price);
-      // Aquí seleccionem el webSelected
+      // Here we deselect webSelected
       setChecked1(!checked1); //because is "asincrono"
     }
     console.log("check" + checked1);
+  };
+  //Personalized service Pàgina Web:
+  const handleChangePage = (item) => {
+    setValuePage(item, console.log("Page: " + item));
+    setSupplemen(item * valueLangue * 30);
+  };
+  const handleChangeLangue = (item) => {
+    setValueLangue(item, console.log("Langue: " + item));
+    setSupplemen(item * valuePage * 30);
   };
 
   //  * Service Consultoria SEO :
@@ -58,6 +67,7 @@ const OrderPage = () => {
     }
     console.log("check" + checked2);
   };
+
   //  * Campaña Googel Ads:
   const handleChange3 = () => {
     const isSelected3 = checked3 === true;
@@ -75,17 +85,6 @@ const OrderPage = () => {
     console.log("check" + checked3);
   };
 
-  //Personalized service Pàgina Web:
-  const handleChangePage = (item) => {
-    setValuePage(item, console.log("Page: " + item));
-    setSupplemen(item * valueLangue * 30);
-  };
-  const handleChangeLangue = (item) => {
-    setValueLangue(item, console.log("Langue: " + item));
-    setSupplemen(item * valuePage * 30);
-  };
-
-  // Page :
   return (
     <div>
       <h3>¿Que quieres hacer?</h3>
@@ -106,6 +105,8 @@ const OrderPage = () => {
               <Panell
                 handleChangePage={handleChangePage}
                 handleChangeLangue={handleChangeLangue}
+                valuePage={valuePage}
+                valueLangue={valueLangue}
               />
             </div>
           ) : (
