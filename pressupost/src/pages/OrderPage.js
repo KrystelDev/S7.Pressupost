@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Services from "../components/Services";
 import Panell from "../components/Panell";
+import useLocalStorage from "../components/useLocalStorage";
 
 //Info of checkbox React : https://www.robinwieruch.de/react-checkbox
 const OrderPage = () => {
   //Initialize variables:
   //know if the user has selected or not each service.
-  let [checked1, setChecked1] = useState(false);
-  let [checked2, setChecked2] = useState(false);
-  let [checked3, setChecked3] = useState(false);
-  const [sercivesSelected, setSercivesSelected] = useState(0); //Price service selected
-  let [valuePage, setValuePage] = useState(1); //Quantity page (min:1)
-  let [valueLangue, setValueLangue] = useState(1); //Quantity Langue (min:1)
-  const [supplement, setSupplemen] = useState(0); //Price supplemen
-  let [budget, setBudget] = useState(0);
+  let [checked1, setChecked1] = useLocalStorage("checked1", false);
+  let [checked2, setChecked2] = useLocalStorage("checked2", false);
+  let [checked3, setChecked3] = useLocalStorage("checked3", false);
+  const [sercivesSelected, setSercivesSelected] = useLocalStorage(
+    "sercivesSelected",
+    0
+  ); //Price service selected
+  let [valuePage, setValuePage] = useLocalStorage("valuePage", 1); //Quantity page (min:1)
+  let [valueLangue, setValueLangue] = useLocalStorage("valueLangue", 1); //Quantity Langue (min:1)
+  const [supplement, setSupplement] = useLocalStorage("supplement", 0); //Price supplemen
+  let [budget, setBudget] = useLocalStorage("budget", 0);
 
   useEffect(() => {
     // Update the budget with its supplement
@@ -28,7 +32,7 @@ const OrderPage = () => {
     const notSelected1 = checked1 === false;
     if (isSelected1) {
       // Here we deselect webSelected and supplemen
-      setSupplemen(0);
+      setSupplement(0);
       setValueLangue(1);
       setValuePage(1);
       setSercivesSelected(sercivesSelected - Services[0].price);
@@ -44,11 +48,11 @@ const OrderPage = () => {
   //Personalized service Pàgina Web:
   const handleChangePage = (item) => {
     setValuePage(item, console.log("Page: " + item));
-    setSupplemen(item * valueLangue * 30);
+    setSupplement(item * valueLangue * 30);
   };
   const handleChangeLangue = (item) => {
     setValueLangue(item, console.log("Langue: " + item));
-    setSupplemen(item * valuePage * 30);
+    setSupplement(item * valuePage * 30);
   };
 
   //  * Service Consultoria SEO :
