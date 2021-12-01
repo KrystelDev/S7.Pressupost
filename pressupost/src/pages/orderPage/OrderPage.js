@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Services from "../components/Services";
-import Panell from "../components/Panell";
-import useLocalStorage from "../components/useLocalStorage";
+import Services from "../../components/Services";
+import Panell from "../../components/Panell";
+import useLocalStorage from "../../components/useLocalStorage";
 
 //Info of checkbox React : https://www.robinwieruch.de/react-checkbox
 const OrderPage = () => {

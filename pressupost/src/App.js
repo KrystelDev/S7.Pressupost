@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
-import OrderPage from "./pages/OrderPage";
 import Footer from "./components/Footer";
+import Routes from "./applicacion/routes";
 
 function App() {
-
-  const currantYear = (new Date().getFullYear());
+  const currantYear = new Date().getFullYear();
 
   return (
     <Fragment>
-      <OrderPage/>
-      <Footer currantYear={currantYear}/>
+      <Routes />
+      <Footer currantYear={currantYear} />
     </Fragment>
   );
 }
