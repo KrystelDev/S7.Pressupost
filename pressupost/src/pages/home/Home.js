@@ -7,7 +7,7 @@ export default () => (
     <header className="autora">
       <p>Krystel Rodríguez</p>
     </header>
-    <p className="presentation">
+    <p className="presentation Entrega">
       Realizamos servicios de marketing muy competitivos. En menos de 5 minutos
       puedes hacer tu pedido.
     </p>
